@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Edition d'un article</title>
+{% endblock %}
+
+        {% block content %}
+        <!-- Main Section Start -->
+            <h1>Modifier l'article</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }} <!-- la variable form vient de la class CreateView -->
+                <input type="submit" value="Editer">
+            </form>
+		<!-- Main Section End -->
+        {% endblock %}

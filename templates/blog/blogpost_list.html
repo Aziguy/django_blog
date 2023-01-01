@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Accueil du blog</title>
+{% endblock %}
+
+        {% block content %}
+        <!-- Main Section Start -->
+            <h1>Le blog de test</h1>
+            {% for post in posts %}
+                <article>
+                    <h2>{{ post.title }}</h2>
+                    <div>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'blog:update' slug=post.slug %}">Editer</a>
+                            <a href="{% url 'blog:delete' slug=post.slug %}">Supprimer</a>
+                        {% endif %}
+                    </div>
+                    <h5>Publié par <i>{{ post.author_or_default }}</i> le {{ post.created_on | date:'j F Y' }}</h5>
+                    <p>{{ post.content | safe | truncatewords:50 }}</p>
+
+                    <form action="{% url 'blog:post' slug=post.slug %}">
+                        <button>Lire l'article</button>
+                    </form>
+                </article>
+            {% endfor %}
+		<!-- Main Section End -->
+        {% endblock %}

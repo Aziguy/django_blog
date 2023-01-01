@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Suppression d'un article</title>
+{% endblock %}
+
+        {% block content %}
+        <!-- Main Section Start -->
+            <form method="POST">
+                {% csrf_token %}
+                <p>Etes-vous sûr de vouloir supprimer '{{ post }}'?</p> <!-- la variable form vient de la class CreateView -->
+                <input type="submit" value="Oui, supprimer">
+            </form>
+		<!-- Main Section End -->
+        {% endblock %}
